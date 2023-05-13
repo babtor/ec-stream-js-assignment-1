@@ -8,3 +8,42 @@
 body {
     min-height: 100vh;
 }
+
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 0.8fr;
+    grid-template-areas:
+     "header"
+     "main"
+    ;
+}
+
+header {
+    grid-area: header;
+    background-color: black;
+}
+
+main {
+    grid-area: main;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.time {
+    display: flex;
+    flex-direction: column;
+}
+
+.weather {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+}
