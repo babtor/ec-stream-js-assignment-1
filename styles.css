@@ -38,6 +38,10 @@ main {
     flex-direction: column;
 }
 
+#location {
+    font-size: 2rem;
+}
+
 .weather {
     display: flex;
     flex-direction: column;
