@@ -5,22 +5,35 @@ function successCallback(position) {
   const latitude = position.coords.latitude;
   const longitude = position.coords.longitude;
 
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+  let units = 'metric';
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=${units}&lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
 
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
       console.log(data);
-
-      document.body.onload = addElement;
-      function addElement() {
-      const locationName = document.createTextNode(data.name);
+      document.body.onload = addLocation;
+      document.body.onload = addTemperature;
+      function addLocation() {
+      let locationName = document.createTextNode(data.name);
       let location = document.getElementById("location");
       location.appendChild(locationName);
       }
-      addElement();
+
+      function addTemperature() {
+        let temperature = data.main.temp
+        let temperatureTextNode = document.createTextNode(temperature);
+        let tempdiv = document.getElementById("temp");
+        tempdiv.appendChild(temperatureTextNode);  
+        console.log(data.main.temp);
+      }
+      addTemperature();
+
+
+      addLocation();
 
     })
+
     .catch(error => {
       console.error('Error:', error);
     });
