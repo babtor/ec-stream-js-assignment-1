@@ -15,6 +15,7 @@ function successCallback(position) {
       document.body.onload = addLocation;
       document.body.onload = addTemperature;
       document.body.onload = addWeather;
+      document.body.onload = timeDisplay;
 
       function addLocation() {
       let locationName = document.createTextNode(data.name);
@@ -50,19 +51,32 @@ function successCallback(position) {
           '50d': 'https://openweathermap.org/img/wn/50d@4x.png',
           '50n': 'https://openweathermap.org/img/wn/50n@4x.png'
         };
+
         let weatherCode = data.weather[0]["icon"];
         let weatherIcon = weatherIcons[weatherCode];
         let displayedIcon = document.getElementById("weatherImg");
         displayedIcon.src = weatherIcon;
+
         let weatherData = data.weather[0]["main"];
         let weatherTextNode = document.createTextNode(weatherData);
         let weatherDiv = document.getElementById("weather");
         weatherDiv.appendChild(weatherTextNode);
       }
+
+      function timeDisplay() {
+        let today = new Date();
+        let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        let timeDiv = document.getElementById("clock");
+        timeDiv.textContent = time;
+        console.log(time);
+      }
+      
+
       addWeather();
       addTemperature();
       addLocation();
-
+      timeDisplay();
+      setInterval(timeDisplay, 1000);
     })
 
     .catch(error => {
@@ -74,5 +88,4 @@ function successCallback(position) {
 function errorCallback(error) {
   console.error('Error occurred while retrieving location:', error);
 }
-
 navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
