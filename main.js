@@ -25,7 +25,7 @@ function successCallback(position) {
 
       function addTemperature() {
         let temperature = data.main.temp;
-        let temperatureTextNode = document.createTextNode(temperature + "C");
+        let temperatureTextNode = document.createTextNode(Math.floor(temperature) + "C");
         let tempdiv = document.getElementById("temp");
         tempdiv.appendChild(temperatureTextNode);  
 
@@ -43,6 +43,8 @@ function successCallback(position) {
         let windTextNode = document.createTextNode("wind strength: " + wind + " M/S");
         let windDiv = document.getElementById("wind");
         windDiv.appendChild(windTextNode);
+
+        //Gör om till en array istället, med variablerna som indexvärden.
       }
 
       function addWeather() {
