@@ -33,15 +33,26 @@ main {
     align-items: center;
 }
 
-.time {
+.center {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
+
 #location {
-    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    flex-direction: column;
+}
+
+#dates {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #weather {
@@ -52,7 +63,8 @@ main {
 }
 
 #clock {
-    font-size: 4rem;
+    display: flex;
+    font-size: 3rem;
 }
 
 .menu {
