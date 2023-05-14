@@ -14,6 +14,7 @@ function successCallback(position) {
       console.log(data);
       document.body.onload = addLocation;
       document.body.onload = addTemperature;
+      document.body.onload = addWeather;
       function addLocation() {
       let locationName = document.createTextNode(data.name);
       let location = document.getElementById("location");
@@ -25,11 +26,16 @@ function successCallback(position) {
         let temperatureTextNode = document.createTextNode(temperature);
         let tempdiv = document.getElementById("temp");
         tempdiv.appendChild(temperatureTextNode);  
-        console.log(data.main.temp);
       }
+
+      function addWeather() {
+        let weatherData = data.weather[0]["main"];
+        let weatherTextNode = document.createTextNode(weatherData);
+        let weatherDiv = document.getElementById("weather");
+        weatherDiv.appendChild(weatherTextNode);
+      }
+      addWeather();
       addTemperature();
-
-
       addLocation();
 
     })
