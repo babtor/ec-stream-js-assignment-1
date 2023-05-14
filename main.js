@@ -109,9 +109,12 @@ function successCallback(position) {
       console.error('Error:', error);
     });
 
+    setInterval(fetch(apiUrl), 30 * 60 * 1000);
+
 }
 
 function errorCallback(error) {
   console.error('Error occurred while retrieving location:', error);
 }
+
 navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
