@@ -33,6 +33,16 @@ function successCallback(position) {
         let pressureTextNode = document.createTextNode("current pressure: " + pressure + " hPa");
         let pressureDiv = document.getElementById("pres");
         pressureDiv.appendChild(pressureTextNode);
+
+        let humidity = data.main.humidity;
+        let humidityTextNode = document.createTextNode("Humidity: " + humidity + "%");
+        let humidityDiv = document.getElementById("humi");
+        humidityDiv.appendChild(humidityTextNode);
+
+        let wind = data.wind.speed;
+        let windTextNode = document.createTextNode("wind strength: " + wind + " M/S");
+        let windDiv = document.getElementById("wind");
+        windDiv.appendChild(windTextNode);
       }
 
       function addWeather() {
