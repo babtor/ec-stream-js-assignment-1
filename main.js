@@ -65,7 +65,10 @@ function successCallback(position) {
 
       function timeDisplay() {
         let today = new Date();
-        let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        let minutes = today.getMinutes().toString().padStart(2, '0');
+        let seconds = today.getSeconds().toString().padStart(2, '0');
+
+        let time = today.getHours() + ":" + minutes + ":" + seconds;
         let timeDiv = document.getElementById("clock");
         timeDiv.textContent = time;
         console.log(time);
