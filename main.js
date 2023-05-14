@@ -24,10 +24,15 @@ function successCallback(position) {
       }
 
       function addTemperature() {
-        let temperature = data.main.temp
-        let temperatureTextNode = document.createTextNode(temperature);
+        let temperature = data.main.temp;
+        let temperatureTextNode = document.createTextNode(temperature + "C");
         let tempdiv = document.getElementById("temp");
         tempdiv.appendChild(temperatureTextNode);  
+
+        let pressure = data.main.pressure;
+        let pressureTextNode = document.createTextNode("current pressure: " + pressure + " hPa");
+        let pressureDiv = document.getElementById("pres");
+        pressureDiv.appendChild(pressureTextNode);
       }
 
       function addWeather() {
@@ -65,13 +70,12 @@ function successCallback(position) {
 
       function timeDisplay() {
         let today = new Date();
-        let minutes = today.getMinutes().toString().padStart(2, '0');
-        let seconds = today.getSeconds().toString().padStart(2, '0');
+        let minutes = today.getMinutes().toString().padStart(2, "0");
+        let seconds = today.getSeconds().toString().padStart(2, "0");
 
         let time = today.getHours() + ":" + minutes + ":" + seconds;
         let timeDiv = document.getElementById("clock");
         timeDiv.textContent = time;
-        console.log(time);
       }
       
 
