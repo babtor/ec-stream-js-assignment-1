@@ -84,9 +84,16 @@ function successCallback(position) {
         let today = new Date();
         let minutes = today.getMinutes().toString().padStart(2, "0");
         let seconds = today.getSeconds().toString().padStart(2, "0");
+        let year = today.getFullYear().toString().padStart(2, "0");
+        let month = today.getMonth().toString().padStart(2, "0");
+        let day = today.getDate().toString().padStart(2, "0");
+        
 
+        let currentDate = year + "-" + month + "-" + day;
         let time = today.getHours() + ":" + minutes + ":" + seconds;
         let timeDiv = document.getElementById("clock");
+        let dateDiv = document.getElementById("dates");
+        dateDiv.textContent = currentDate;
         timeDiv.textContent = time;
       }
       
