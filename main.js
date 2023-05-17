@@ -49,6 +49,9 @@ function clearData() {
 
   let windElement = document.getElementById("wind");
   windElement.textContent = "";
+
+  let weatherElement = document.getElementById("weatherText");
+  weatherElement.textContent = "";
 }
 
 function addLocation(data) {
@@ -110,7 +113,7 @@ function addWeather(data) {
 
   let weatherData = data.weather[0]["main"];
   let weatherTextNode = document.createTextNode(weatherData);
-  let weatherDiv = document.getElementById("weather");
+  let weatherDiv = document.getElementById("weatherText");
   weatherDiv.appendChild(weatherTextNode);
 }
 
@@ -133,4 +136,6 @@ function timeDisplay() {
 }
 
 fetchedData();
+
+setInterval(fetchedData, 10000);
 
