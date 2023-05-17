@@ -48,13 +48,13 @@ function clearData() {
   windElement.textContent = "";
 }
 
-function addLocation() {
+function addLocation(data) {
   let locationName = document.createTextNode(data.name);
   let location = document.getElementById("location");
   location.appendChild(locationName);
   }
 
-function addTemperature() {
+function addTemperature(data) {
   let temperature = data.main.temp;
   let temperatureTextNode = document.createTextNode(Math.floor(temperature) + "C");
   let tempdiv = document.getElementById("temp");
@@ -78,7 +78,7 @@ function addTemperature() {
   //Gör om till en array istället, med variablerna som indexvärden.
 }
 
-function addWeather() {
+function addWeather(data) {
   let weatherIcons = {
     '01d': 'https://openweathermap.org/img/wn/01d@4x.png',
     '01n': 'https://openweathermap.org/img/wn/01n@4x.png',
