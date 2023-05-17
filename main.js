@@ -1,6 +1,5 @@
 let apiKey = 'e79a4558d37f0ddb584eb4a4854fb14b';
 
-
 function successCallback(position) {
   const latitude = position.coords.latitude;
   const longitude = position.coords.longitude;
@@ -12,10 +11,6 @@ function successCallback(position) {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      document.body.onload = addLocation;
-      document.body.onload = addTemperature;
-      document.body.onload = addWeather;
-      document.body.onload = timeDisplay;
 
       function addLocation() {
       let locationName = document.createTextNode(data.name);
@@ -108,13 +103,28 @@ function successCallback(position) {
     .catch(error => {
       console.error('Error:', error);
     });
-
-    setInterval(fetch(apiUrl), 30 * 60 * 1000);
-
 }
 
 function errorCallback(error) {
   console.error('Error occurred while retrieving location:', error);
 }
 
+function clearData() {
+  let locationElement = document.getElementById("location");
+  locationElement.textContent = "";
+
+  let tempElement = document.getElementById("temp");
+  tempElement.textContent = "";
+
+  let pressureElement = document.getElementById("pres");
+  pressureElement.textContent = "";
+
+  let humidityElement = document.getElementById("humi");
+  humidityElement.textContent = "";
+
+  let windElement = document.getElementById("wind");
+  windElement.textContent = "";
+}
+
 navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+
