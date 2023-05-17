@@ -137,5 +137,5 @@ function timeDisplay() {
 
 fetchedData();
 
-setInterval(fetchedData, 10000);
+setInterval(fetchedData, 30 * 60 * 1000);
 
