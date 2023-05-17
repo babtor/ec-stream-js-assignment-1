@@ -1,6 +1,8 @@
 let apiKey = 'e79a4558d37f0ddb584eb4a4854fb14b';
 
-function successCallback(position) {
+
+function fetchedData() {
+let successCallback = (position) => {
   const latitude = position.coords.latitude;
   const longitude = position.coords.longitude;
 
@@ -10,14 +12,12 @@ function successCallback(position) {
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
+      clearData();
       console.log(data);
 
-
-      
-
-      addWeather();
-      addTemperature();
-      addLocation();
+      addWeather(data);
+      addTemperature(data);
+      addLocation(data);
       timeDisplay();
       setInterval(timeDisplay, 1000);
     })
@@ -29,6 +29,9 @@ function successCallback(position) {
 
 function errorCallback(error) {
   console.error('Error occurred while retrieving location:', error);
+}
+
+  navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 }
 
 function clearData() {
@@ -129,6 +132,5 @@ function timeDisplay() {
   timeDiv.textContent = time;
 }
 
-
-navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+fetchedData();
 
