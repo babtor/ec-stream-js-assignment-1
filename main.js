@@ -13,12 +13,30 @@ let successCallback = (position) => {
   .then(response => response.json())
   .then(data => {
     console.log(data);
+    createOptionsList(data);
+
+    function createOptionsList(data) {
+      const select = document.getElementById('cities');
+    
+      data.forEach((item) => {
+        const option = document.createElement('option');
+        option.value = item.city;
+        option.textContent = item.city;
+        select.appendChild(option);
+      });
+    }
+    
+    // Call the function and pass the fetched data
+
   })
-  
+
   .catch(error => {
     console.error('Error:', error);
   });
 
+  
+
+ 
 
 
   fetch(apiUrl)
