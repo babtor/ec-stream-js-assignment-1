@@ -9,6 +9,18 @@ let successCallback = (position) => {
   let units = 'metric';
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=${units}&lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
 
+  fetch('city_list.json')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  })
+  
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+
+
   fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
