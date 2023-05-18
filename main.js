@@ -1,5 +1,32 @@
 let apiKey = 'e79a4558d37f0ddb584eb4a4854fb14b';
 
+function getSelectValue() {
+  let selectedValue = document.getElementById("cities").value;
+  console.log(selectedValue);
+}
+
+function fetchedListData() {
+fetch('city_list.json')
+.then(response => response.json())
+.then(data => {
+  console.log(data);
+  createOptionsList(data);
+
+  function createOptionsList(data) {
+    const select = document.getElementById("cities");
+  
+    data.forEach((item) => {
+      const option = document.createElement("option");
+      option.value = item.city;
+      option.textContent = item.city;
+      select.appendChild(option);
+    });
+  }
+})
+.catch(error => {
+  console.error('Error:', error);
+});
+}
 
 function fetchedData() {
 let successCallback = (position) => {
@@ -8,36 +35,6 @@ let successCallback = (position) => {
 
   let units = 'metric';
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=${units}&lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
-
-  fetch('city_list.json')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    createOptionsList(data);
-
-    function createOptionsList(data) {
-      const select = document.getElementById('cities');
-    
-      data.forEach((item) => {
-        const option = document.createElement('option');
-        option.value = item.city;
-        option.textContent = item.city;
-        select.appendChild(option);
-      });
-    }
-    
-    // Call the function and pass the fetched data
-
-  })
-
-  .catch(error => {
-    console.error('Error:', error);
-  });
-
-  
-
- 
-
 
   fetch(apiUrl)
     .then(response => response.json())
@@ -166,6 +163,7 @@ function timeDisplay() {
 }
 
 fetchedData();
+fetchedListData();
 
 setInterval(fetchedData, 30 * 60 * 1000);
 
