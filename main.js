@@ -62,7 +62,7 @@ function addLocation(data) {
 
 function addTemperature(data) {
   let temperature = data.main.temp;
-  let temperatureTextNode = document.createTextNode(Math.floor(temperature) + "C");
+  let temperatureTextNode = document.createTextNode(Math.floor(temperature) + "°C");
   let tempdiv = document.getElementById("temp");
   tempdiv.appendChild(temperatureTextNode);  
 

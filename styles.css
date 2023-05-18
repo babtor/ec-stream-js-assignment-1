@@ -30,6 +30,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #d0f6ef;
 }
 
 .center {
@@ -37,6 +38,12 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #a7d8e0;
+
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    padding: 20px;
 }
 
 
@@ -52,6 +59,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.5rem;
 }
 
 #weather {
@@ -59,7 +67,9 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: 2rem;
 }
+
 
 #clock {
     display: flex;
