@@ -4,7 +4,6 @@ function fetchedListData() {
 fetch('city_list.json')
 .then(response => response.json())
 .then(data => {
-  console.log(data);
   createOptionsList(data);
 
   function createOptionsList(data) {
@@ -14,6 +13,7 @@ fetch('city_list.json')
       let option = document.createElement("option");
       option.value = [item.lat , item.lng];
       option.textContent = item.city;
+      option.locationName = item.city;
       select.appendChild(option);
     });
   }
@@ -41,11 +41,10 @@ function fetchedData() {
       .then(response => response.json())
       .then(data => {
         clearData();
-        console.log(data);
 
         addWeather(data);
         addTemperature(data);
-        addLocation(data);
+        addLocation();
         timeDisplay();
         setInterval(timeDisplay, 1000);
       })
@@ -75,10 +74,11 @@ function clearData() {
   weatherElement.textContent = "";
 }
 
-function addLocation(data) {
-  let locationName = document.createTextNode(data.name);
-  let location = document.getElementById("location");
-  location.appendChild(locationName);
+function addLocation() {
+  let selectedOption = document.getElementById("cities").selectedOptions[0];
+  let locationName = selectedOption.locationName;
+  let location =  document.getElementById("location");
+  location.textContent = locationName;
   }
 
 function addTemperature(data) {
@@ -155,6 +155,7 @@ function timeDisplay() {
   dateDiv.textContent = currentDate;
   timeDiv.textContent = time;
 }
+
 fetchedListData();
 fetchedData();
 
