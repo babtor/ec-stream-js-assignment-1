@@ -1,10 +1,5 @@
 let apiKey = 'e79a4558d37f0ddb584eb4a4854fb14b';
 
-function getSelectValue() {
-  let selectedValue = document.getElementById("cities").value;
-  console.log(selectedValue);
-}
-
 function fetchedListData() {
 fetch('city_list.json')
 .then(response => response.json())
@@ -13,52 +8,51 @@ fetch('city_list.json')
   createOptionsList(data);
 
   function createOptionsList(data) {
-    const select = document.getElementById("cities");
+    let select = document.getElementById("cities");
   
     data.forEach((item) => {
-      const option = document.createElement("option");
-      option.value = item.city;
+      let option = document.createElement("option");
+      option.value = [item.lat , item.lng];
       option.textContent = item.city;
       select.appendChild(option);
     });
   }
 })
-.catch(error => {
-  console.error('Error:', error);
-});
+  .catch(error => {
+    console.error('Error:', error);
+  });
 }
 
 function fetchedData() {
-let successCallback = (position) => {
-  const latitude = position.coords.latitude;
-  const longitude = position.coords.longitude;
+    let selectedValue = document.getElementById("cities").value;
+    let latitude, longitude;
 
-  let units = 'metric';
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=${units}&lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+      const selectedCoordinates = selectedValue.split(",");
+      const selectedLatitude = selectedCoordinates[0];
+      const selectedLongitude = selectedCoordinates[1];
+      latitude = selectedLatitude;
+      longitude = selectedLongitude;
+    
 
-  fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-      clearData();
-      console.log(data);
+    let units = 'metric';
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=${units}&lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
 
-      addWeather(data);
-      addTemperature(data);
-      addLocation(data);
-      timeDisplay();
-      setInterval(timeDisplay, 1000);
-    })
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        clearData();
+        console.log(data);
 
-    .catch(error => {
-      console.error('Error:', error);
-    });
-}
+        addWeather(data);
+        addTemperature(data);
+        addLocation(data);
+        timeDisplay();
+        setInterval(timeDisplay, 1000);
+      })
 
-function errorCallback(error) {
-  console.error('Error occurred while retrieving location:', error);
-}
-
-  navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+      .catch(error => {
+        console.error('Error:', error);
+      });
 }
 
 function clearData() {
@@ -161,9 +155,8 @@ function timeDisplay() {
   dateDiv.textContent = currentDate;
   timeDiv.textContent = time;
 }
-
-fetchedData();
 fetchedListData();
+fetchedData();
 
 setInterval(fetchedData, 30 * 60 * 1000);
 
