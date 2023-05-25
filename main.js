@@ -139,6 +139,7 @@ function addWeather(data) {
 
 function timeDisplay() {
   let today = new Date();
+  let hours = today.getHours().toString().padStart(2, "0");
   let minutes = today.getMinutes().toString().padStart(2, "0");
   let seconds = today.getSeconds().toString().padStart(2, "0");
   let year = today.getFullYear().toString().padStart(2, "0");
@@ -147,7 +148,7 @@ function timeDisplay() {
   
 
   let currentDate = year + "-" + month + "-" + day;
-  let time = today.getHours() + ":" + minutes + ":" + seconds;
+  let time = hours + ":" + minutes + ":" + seconds;
   let timeDiv = document.getElementById("clock");
   let dateDiv = document.getElementById("dates");
   dateDiv.textContent = currentDate;
