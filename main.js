@@ -84,8 +84,8 @@ function addLocation() {
 function addTemperature(data) {
   let temperature = data.main.temp;
   let temperatureTextNode = document.createTextNode(Math.floor(temperature) + "°C");
-  let tempdiv = document.getElementById("temp");
-  tempdiv.appendChild(temperatureTextNode);  
+  let tempDiv = document.getElementById("temp");
+  tempDiv.appendChild(temperatureTextNode);  
 
   let pressure = data.main.pressure;
   let pressureTextNode = document.createTextNode("current pressure: " + pressure + " hPa");
@@ -101,8 +101,6 @@ function addTemperature(data) {
   let windTextNode = document.createTextNode("wind strength: " + wind + " M/S");
   let windDiv = document.getElementById("wind");
   windDiv.appendChild(windTextNode);
-
-  //Gör om till en array istället, med variablerna som indexvärden.
 }
 
 function addWeather(data) {
