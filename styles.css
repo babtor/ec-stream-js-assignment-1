@@ -28,6 +28,7 @@ header {
     align-items: center;
     justify-content: center;
     font-size: 3rem;
+    font-family: 'Abril Fatface', cursive;
 }
 
 main {
@@ -36,6 +37,7 @@ main {
     justify-content: center;
     align-items: center;
     background-color: #d0f6ef;
+    font-family: 'Arvo', serif;
 }
 
 .center {
@@ -93,6 +95,7 @@ main {
     text-align: center;
     font-size: 1.5rem;
     margin: 10px;
+    font-family: 'Arvo', serif;
     
 }
 
